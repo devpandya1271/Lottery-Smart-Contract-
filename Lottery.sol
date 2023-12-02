@@ -6,7 +6,7 @@ pragma solidity 0.8.19;
 // 3. array jisne index k according info jyega.
 // 4. Array k max index se random number genertate krega.
 
-contract Lottry {
+contract Lottery {
     //Address array where info will be stored off the entery
     address owner;
     address[] players;
@@ -26,9 +26,9 @@ contract Lottry {
     function ENTER() public payable {
         for (uint _i; _i < players.length; _i++) {
             if (msg.sender == players[_i])
-                revert throwError("Fuck off! Duplicate", msg.sender);
+                revert throwError("Duplicate address", msg.sender);
         }
-        require(msg.value > 1e16, "Inshuffient Eth");
+        require(msg.value > 1e16, "Insufficient Eth");
         players.push() = msg.sender;
     }
 
@@ -36,7 +36,7 @@ contract Lottry {
     uint public randNo;
 
     function SlectWinner() public OnlyOwner returns (string memory, address) {
-        require(players.length > 3, "NOT ENOUGH PLAYER");
+        require(players.length > 3, "NOT ENOUGH Entries");
 
         randNo =
             uint(
